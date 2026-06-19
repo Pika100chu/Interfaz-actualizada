@@ -333,13 +333,13 @@ if st.button("Calcular equilibrio"):
     st.dataframe(comparacion, use_container_width=True)
 
     fig, ax = plt.subplots(figsize=(5,4))
-    ax.bar(comparacion["Modelo"], comparacion["Precio"])
+    ax.bar(comparacion["Modelo"], comparacion["Precio"]color=["royalblue","#E34D4D","seagreen"])
     ax.set_title("Comparación de precios")
     ax.set_ylabel("Precio")
     st.pyplot(fig)
 
     fig2, ax2 = plt.subplots(figsize=(5,4))
-    ax2.bar(comparacion["Modelo"], comparacion["Cantidad"])
+    ax2.bar(comparacion["Modelo"], comparacion["Cantidad"],color=["royalblue","#E34D4D","seagreen"])
     ax2.set_title("Producción total")
     ax2.set_ylabel("Cantidad")
     st.pyplot(fig2)
