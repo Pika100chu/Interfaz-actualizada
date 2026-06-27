@@ -226,7 +226,7 @@ def grafico_stackelberg(a,b,c2,q1_star,q2_star):
 # Título del grafico
     ax.set_title('Stackelberg - Curvas de reaccion')
 # Cuadrícula y leyenda
-    #ax.grid()
+    ax.grid()
     ax.legend()
 
     return fig
