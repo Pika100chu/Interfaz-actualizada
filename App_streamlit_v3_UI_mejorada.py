@@ -265,7 +265,7 @@ with col3:
         with st.expander(f"Empresa {i+1}", expanded=(i < 2)):
             cm = st.number_input(
                 f"Costo marginal empresa {i+1}",
-                value=float(10+10*i),
+                value=float(10),
                 key=f"cm_{i}"
             )
 
