@@ -105,32 +105,41 @@ def bertrand(a,b,c1,c2,F1,F2):
 # =====================
 
 def grafico_mercado(a,b,Q_star,P_star,titulo):
-
+    
+# Cantidad máxima donde la demanda llega a precio 0
     Q_max = a/b
+# Genera muchos valores de Q para dibujar la curva
     Q = np.linspace(0,Q_max,300)
+# Función de demanda inversa: P = a - bQ
     P_demanda = a-b*Q
 
-    # cortar cuando P llega a 0
+# Corta la curva cuando el precio se vuelve negativo
     mask = P_demanda >= 0
     Q = Q[mask]
     P_demanda = P_demanda[mask]
-
+    
+# Crea la figura y los ejes
     fig, ax = plt.subplots(figsize=(6,4))
-
+# Grafica la curva de demanda
     ax.plot(Q,P_demanda,label="Demanda")
+ # Marca el punto de equilibrio
     ax.scatter(Q_star,P_star,s=250,zorder=3)
 
-    # líneas punteadas hasta ejes
+# Línea vertical desde el equilibrio hasta el eje X
     ax.plot([Q_star,Q_star],[0,P_star], linestyle="--",color="black")
+# Línea horizontal desde el equilibrio hasta el eje Y
     ax.plot([0,Q_star],[P_star,P_star], linestyle="--",color="black")
 
-    # ejes arrancan en 0
+# Hace que ambos ejes comiencen en 0
     ax.set_xlim(left=0)
     ax.set_ylim(bottom=0)
 
+# Etiquetas de los ejes
     ax.set_xlabel("Cantidad total Q")
     ax.set_ylabel("Precio P")
+# Título del gráfico
     ax.set_title(titulo)
+# Agrega cuadrícula y leyenda
     ax.grid()
     ax.legend()
 
@@ -138,13 +147,15 @@ def grafico_mercado(a,b,Q_star,P_star,titulo):
 
 
 def grafico_cournot(a,b,c1,c2,q1_star,q2_star):
-
+# Valores posibles de producción para graficar
     q = np.linspace(0,a,300)
 
+# Curva de reacción de la Empresa 1
     BR1 = (a-c1-q)/(2*b)
+# Curva de reacción de la Empresa 2
     BR2 = (a-c2-q)/(2*b)
 
-    # cortar cuando llegan a 0
+# Elimina los tramos donde la producción sería negativa
     mask1 = BR1 >= 0
     mask2 = BR2 >= 0
 
@@ -153,24 +164,31 @@ def grafico_cournot(a,b,c1,c2,q1_star,q2_star):
 
     q_BR2 = q[mask2]
     BR2 = BR2[mask2]
-
+# Crea figura y ejes
     fig, ax = plt.subplots(figsize=(6,4))
-
+    
+# Grafica la reacción óptima de la Empresa 1
     ax.plot(q_BR1,BR1,label='Curva reaccion Empresa 1')
+# Grafica la reacción óptima de la Empresa 2
     ax.plot(BR2,q_BR2,label='Curva reaccion Empresa 2')
 
+# Marca el equilibrio de Cournot
     ax.scatter(q2_star,q1_star,s=250,zorder=3)
 
-    # líneas hasta ejes
+# Líneas punteada hasta los ejes
     ax.plot([q2_star,q2_star],[0,q1_star], linestyle='--',color="black")
     ax.plot([0,q2_star],[q1_star,q1_star], linestyle='--',color="black")
 
+# Ejes comenzando en 0
     ax.set_xlim(left=0)
     ax.set_ylim(bottom=0)
 
+# Etiquetas
     ax.set_xlabel('q2')
     ax.set_ylabel('q1')
+# Título del gráfico
     ax.set_title('Cournot - Curvas de reacción')
+# Leyenda y cuadrícula
     ax.legend()
     ax.grid()
 
@@ -179,30 +197,36 @@ def grafico_cournot(a,b,c1,c2,q1_star,q2_star):
 
 def grafico_stackelberg(a,b,c2,q1_star,q2_star):
 
+# Posibles cantidades de la empresa líder
     q1 = np.linspace(0,a/b,300)
+# Función de reacción de la empresa seguidora
     BR2 = (a-c2-b*q1)/(2*b)
 
-    # cortar cuando llega a 0
+# cortar cuando P llega a 0 (evita cantidades negativas)
     mask = BR2 >= 0
     q1_plot = q1[mask]
     BR2 = BR2[mask]
-
+# Crea figura y ejes
     fig, ax = plt.subplots(figsize=(6,4))
-
+    
+# Grafica la función de reacción de la seguidora
     ax.plot(q1_plot,BR2,label='Reaccion de Seguidora')
     ax.scatter(q1_star,q2_star,s=250,zorder=3)
 
-    # líneas hasta ejes
+# Líneas auxiliares hasta los ejes
     ax.plot([q1_star,q1_star],[0,q2_star], linestyle='--',color="black")
     ax.plot([0,q1_star],[q2_star,q2_star], linestyle='--',color="black")
-
+# Ejes comenzando en 0
     ax.set_xlim(left=0)
     ax.set_ylim(bottom=0)
 
+# Etiquetas
     ax.set_xlabel('q1 Empresa líder')
     ax.set_ylabel('q2 Empresa seguidora')
+# Título del grafico
     ax.set_title('Stackelberg - Curvas de reaccion')
-    ax.grid()
+# Cuadrícula y leyenda
+    #ax.grid()
     ax.legend()
 
     return fig
