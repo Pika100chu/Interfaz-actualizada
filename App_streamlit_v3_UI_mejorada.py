@@ -306,7 +306,7 @@ if st.button("Calcular equilibrio"):
         c1r.metric("Cantidad empresa 2", f"{q2_star:.2f}")
 
     c2r.metric("Cantidades totales", f"{Q_star:.2f}")
-    c2r.metric("P", f"{P_star:.2f}")
+    c2r.metric("Precio", f"{P_star:.2f}")
 
     if modelo == "Cournot":
         for i,pi in enumerate(beneficios):
