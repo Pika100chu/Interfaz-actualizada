@@ -233,8 +233,8 @@ modelo = st.selectbox(
 col1,col2,col3 = st.columns(3)
 
 with col1:
-    a = st.number_input("a (intercepto demanda)", min_value=0.01, value=100.0)
-    b = st.number_input("b (pendiente demanda)", min_value=0.01, value=1.0)
+    a = st.number_input("a (intercepto demanda)", min_value=0.01, value=100.0,step=10)
+    b = st.number_input("b (pendiente demanda)", min_value=0.01, value=1.0,step=1)
 
 with col2:
     if modelo == "Cournot":
